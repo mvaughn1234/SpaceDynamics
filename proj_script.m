@@ -38,7 +38,21 @@ r_set = AnglesGauss(obsv_select,R_select,T_select,mu);
 v2 = Gibbs(r_set,mu);
 o_e = orbital_elements(r2,v2,mu);
 
-initial_conditions = 
-range = zeros(1,size(t,1));
+tol = 1E-13;
+r_obsv = zeros(3,size(t,1));
 for i = [1:size(t,1)]
-    [t2,RV2] = Position_2BP(
+    t_range = [t_s(3):t_s(i)];
+    [t2,RV2] = Position_2BP([r2',v2'],t_range,tol,mu)
+    ri = RV2(size(t2,1),1:3);
+    vi = RV2(size(t2,1),4:6);
+    range_vec_i = ri-R(:,i); range_i = norm(range_vec_i);
+    pi = range*[cos(obsv(i,1)*pi/180)*cos(obsv(i,2)*pi/180);...
+        cos(obsv(i,1)*pi/180)*sin(obsv(i,2)*pi/180);...
+        sin(obsv(i,2)*pi/180)];
+    r_i = pi + R(:,i);
+    r_obsv(:,i) = r_i;
+    
+    
+    
+    
+    
