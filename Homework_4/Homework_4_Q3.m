@@ -1,0 +1,22 @@
+clear all; close all; clc;
+rp1 = 8000
+e1 = 0.45
+a1 = rp1/(1-e1)
+rb = a1
+p1 = a1*(1-e1^2)
+u = 3.986*10^5
+h1 = sqrt(u*p1)
+vp1 = h1/rp1
+E1 = (vp1^2)/2-u/rp1
+vb1 = sqrt(2*(E1+u/rb))
+cg = h1/(rb*vb1)
+vb2 = vb1+0.1
+h2 = rb*vb2*cg
+p2 = (h2^2)/u
+E2 = (vb2^2)/2-u/rb
+a2 = -u/(2*E2)
+e2 = 1-p2/a2
+c2 = e2*a2
+b2 = sqrt(a2^2-c2^2)
+c1 = e1*a1
+b1 = sqrt(a1^2-c1^2)
