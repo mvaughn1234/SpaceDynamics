@@ -27,7 +27,7 @@ a3u = -T1*((T3-T1)^2-T1^2)/(6*(T3-T1));
 
 L = [p1_unit,p2_unit,p3_unit];
 
-M = inv(L)*R;
+M = L\R;
 
 A = M(2,1)*a1-M(2,2)+M(2,3)*a3;
 B = M(2,1)*a1u+M(2,3)*a3u;
@@ -49,9 +49,9 @@ cp = -M*c;
 p1 = cp(1)/c1;
 p3 = cp(3)/c3;
 
-r1 = p1*p1_unit + R1;
-r2 = p2*p2_unit + R2;
-r3 = p3*p3_unit + R3;
+r1 = double(p1*p1_unit + R1);
+r2 = double(p2*p2_unit + R2);
+r3 = double(p3*p3_unit + R3);
 r_set = [r1,r2,r3];
 end
 

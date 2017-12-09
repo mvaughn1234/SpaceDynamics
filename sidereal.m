@@ -3,9 +3,9 @@ function [ ThL ] = sidereal(year, month, day, hour, minute, second, Lon)
 %   Detailed explanation goes here
 jd = ymdhms2jd(year,month,day,hour,minute,second);
 djd = jd-ymdhms2jd(2000,1,1,12,0,0);
-djct = djd/36525;
+jct = djd/36525;
 
-ThL = 100.4606184+36000.7700*djct+0.000387933*djct^2-(2.583E-8)*djct^3 + ...
+ThL = 100.4606184+36000.7700*jct+0.000387933*jct^2-(2.583E-8)*jct^3 + ...
     360.985647*((hour+minute/60+second/3600)/24) + Lon;
 
 end
